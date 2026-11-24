@@ -65,7 +65,7 @@
       color: var(--accent); border: 1px solid rgba(245, 158, 11, 0.5);
       padding: 4px 12px; border-radius: 20px; margin-bottom: 18px;
     }
-    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.15; }
+    .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.15; text-wrap: balance; }
     .hero .role { font-size: clamp(1.05rem, 2.4vw, 1.35rem); color: #cbd5e1; margin-top: 12px; }
     .hero .role strong { color: #fff; }
     .hero p.lead { max-width: 620px; color: #94a3b8; margin-top: 18px; }
@@ -133,14 +133,65 @@
 
     footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 40px 24px; }
 
-    @media (max-width: 720px) {
-      .nav-links { display: none; }
+    /* ---------- Responsive: works on phones, tablets and laptops ---------- */
+    * { min-width: 0; }
+    html { scroll-padding-top: 64px; }
+    body { overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+    img { max-width: 100%; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; }
+    .nav-links { display: flex; }
+    .nav-links a { padding: 6px 0; white-space: nowrap; }
+    .projects { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+    .grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+    .contact p.contact-details { overflow-wrap: anywhere; }
+    .contact p.contact-details a { white-space: nowrap; }
+    @media (hover: none) { .card:hover { transform: none; box-shadow: none; } }
+
+    /* Tablets (portrait and small laptops) */
+    @media (max-width: 960px) {
+      .hero { padding: 72px 28px 72px; }
+      .hero-photo { width: 200px; height: 200px; }
+      section { padding: 60px 28px 8px; }
+      .about-grid { grid-template-columns: 3fr 2fr; gap: 22px; }
+    }
+
+    /* Large phones and small tablets */
+    @media (max-width: 760px) {
       .about-grid { grid-template-columns: 1fr; }
-      .hero { padding: 56px 24px 64px; }
+      .hero { padding: 44px 20px 56px; }
       .hero-inner { flex-direction: column-reverse; text-align: center; gap: 24px; }
-      .hero-photo { width: 170px; height: 170px; }
+      .hero-photo { width: 170px; height: 170px; border-width: 4px; }
       .hero p.lead { margin-left: auto; margin-right: auto; }
       .hero .btns { justify-content: center; }
+      .eyebrow { font-size: 0.72rem; letter-spacing: 1.5px; }
+      section { padding: 52px 20px 8px; }
+
+      /* menu becomes one row you can swipe sideways */
+      .nav-inner { padding: 10px 16px; gap: 16px; }
+      .nav-links { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { margin-left: 0; margin-right: 18px; font-size: 0.88rem; }
+      .nav-links a:last-child { margin-right: 0; }
+    }
+
+    /* Phones */
+    @media (max-width: 480px) {
+      body { line-height: 1.6; }
+      .hero { padding: 36px 16px 48px; }
+      .hero-photo { width: 150px; height: 150px; }
+      .hero h1 { font-size: 1.85rem; }
+      .btns .btn { flex: 1 1 140px; }
+      section { padding: 44px 16px 8px; }
+      .section-title { font-size: 1.45rem; }
+      .card { padding: 18px; }
+      .facts { padding: 16px 18px; }
+      .timeline { padding-left: 18px; }
+      .item::before { left: -26px; }
+      .item h3 { font-size: 1rem; }
+      .contact { padding: 32px 18px; border-radius: 14px; }
+      .contact h2 { font-size: 1.4rem; }
+      .contact .btns .btn { flex: 1 1 calc(50% - 6px); padding: 0 12px; }
+      footer { padding: 32px 16px; }
     }
   </style>
 </head>
